@@ -5,7 +5,6 @@ import Roadmap from './Roadmap.js';
 import Team from './Team.js';
 import WhitePaper from './WhitePaper.js';
 
-
 export {
   Hero,
   Navbar,

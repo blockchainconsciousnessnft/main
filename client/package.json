@@ -28,13 +28,24 @@
     ]
   },
   "dependencies": {
+    "@ant-design/icons": "^5.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.4.7",
+    "framer-motion": "^10.12.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-fast-marquee": "^1.5.2",
+    "react-icons": "^4.8.0",
+    "react-locomotive-scroll": "^0.2.2",
+    "react-marquee-slider": "^1.1.5",
     "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",
-    "styled-components": "^6.0.0-rc.1"
+    "react-sizeme": "^3.0.2",
+    "react-spinners": "^0.13.8",
+    "react-toastify": "^9.1.2",
+    "styled-components": "^6.0.0-rc.1",
+    "web-vitals": "^3.3.1"
   }
 }
