@@ -1,6 +1,8 @@
 import heroImage from "../assets/heroImage.png";
 import socialCommentator from "../assets/socialCommentator.png";
 import meeting from "../assets/meeting.png";
+import sharing from "../assets/sharing.png";
+import business from "../assets/business.png";
 import React from "react";
 import { styled } from "styled-components";
 import { Carousel } from "antd";
@@ -30,7 +32,7 @@ const FirstSlide = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 800px;
+  height: 900px;
   color: #fff;
   border-top-right-radius: 40px;
   border-bottom-left-radius: 40px;
@@ -42,8 +44,8 @@ const SecondSlide = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 800px;
-  color: #fff;
+  height: 900px;
+  color: #f6ff00;
   border-top-right-radius: 40px;
   border-bottom-left-radius: 40px;
   font-weight: bolder;
@@ -54,31 +56,31 @@ const ThirdSlide = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 800px;
-  color: #000;
+  height: 900px;
+  color: #fff;
   border-top-right-radius: 40px;
   border-bottom-left-radius: 40px;
   font-weight: bolder;
 `;
 
 const FourthSlide = styled.div`
-  background-image: url(${heroImage});
+  background-image: url(${sharing});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 800px;
+  height: 900px;
   color: #fff;
   border-top-right-radius: 40px;
   border-bottom-left-radius: 40px;
 `;
 
 const FifthSlide = styled.div`
-  background-image: url(${heroImage});
+  background-image: url(${business});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 800px;
-  color: #fff;
+  height: 900px;
+  color: #ff1395;
   border-top-right-radius: 40px;
   border-bottom-left-radius: 40px;
 `;
@@ -117,7 +119,7 @@ const renderText = (slideNo) => {
     case 3:
       return (
         <Text>
-          A haven for writers, artists, photographers, sociologists,
+          A heaven for writers, artists, photographers, sociologists,
           anthropologists to earn from content contributions
         </Text>
       );
@@ -125,7 +127,7 @@ const renderText = (slideNo) => {
       return (
         <Text>
           A model for showcasing the tenets of a ideal decentralized sovereign
-          system through its architecture, governance and fair inclusio
+          system through its architecture, governance and fair inclusion
         </Text>
       );
     case 5:

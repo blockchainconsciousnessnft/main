@@ -169,24 +169,17 @@ function Footer() {
             variants={letter}
             whileInView='animate'
             viewport={{once:true}}
-            href='https://twitter.com'
+            href='https://twitter.com/NodeDivine'
             target='_blank'
           >
             Twitter
           </motion.a>
           <motion.a
             variants={letter}
-            href='https://github.com/Jassi10000'
+            href='https://discord.gg/59Jw4EhJ'
             target='_blank'
           >
-            GitHub
-          </motion.a>
-          <motion.a
-            variants={letter}
-            href='https://www.linkedin.com/in/jaskeerat-singh-5438531a6/'
-            target='_blank'
-          >
-            Linkedin
+            Discord
           </motion.a>
         </Social>
         <motion.div

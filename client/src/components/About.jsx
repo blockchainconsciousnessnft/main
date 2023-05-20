@@ -84,7 +84,7 @@ function About() {
               stroke-width='1px'
               dy='.3em'
             >
-              ABOUT?
+              WANNA BE A PART?
             </motion.text>
           </g>
         </svg>
@@ -103,7 +103,7 @@ function About() {
           viewport={{ once: true }}
         >
           <motion.span variants={letter}>
-            We are the winning team and owner of world's biggest Blockchain community 
+            We already know that you are impressed 🥰 , worry not we got you covered , scroll and help yourself with links to be a part of family
           </motion.span>
         </motion.span>
       </TextWrapper>
@@ -136,7 +136,7 @@ const Section = styled.div`
     }
 
     .text {
-      font-size: 80px;
+      font-size: 36px;
       fill: #232622;
       @media screen and (max-width: 640px) {
         font-size: 60px;
@@ -163,6 +163,7 @@ const TextWrapper = styled(motion.div)`
     line-height: 2.3rem;
     span {
       overflow: hidden;
+      color: rgba(45,253,79,1);
       @media screen and (max-width: 640px) {
         font-size: 17px;
       }

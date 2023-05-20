@@ -65,12 +65,19 @@ const Text = styled(motion.div)`
     margin: auto;
     margin-top: 20px;
     text-align: center;
+    color: rgba(45,253,79,1);
    
     &:hover {
-      color: #ff6363;
-      text-decoration: line-through;
+      color: #fff;
+      /* text-decoration: line-through; */
       letter-spacing: 2px;
     }
+  }
+  .role{
+    font-size: 1rem;
+    text-align: center;
+    color: yellow;
+    width: 100%;
   }
   .use {
     font-size: 0.8rem;
@@ -79,13 +86,10 @@ const Text = styled(motion.div)`
     overflow: hidden;
     transition: all 0.8s ease-in-out;
    
-    &:hover {
-      color: #ff6363;
-    }
   }
 `
 
-function SkillCard({src , name , use}) {
+function SkillCard({src , name , use, role}) {
 const transition = { duration: 1.4, ease: [0.17, 0.67, 0.83, 0.67] }
   return (
     <Container>
@@ -106,6 +110,9 @@ const transition = { duration: 1.4, ease: [0.17, 0.67, 0.83, 0.67] }
       >
         <motion.p  className='name'>
           {name}
+        </motion.p>
+        <motion.p className='role'>
+          {role}
         </motion.p>
         <motion.p transition={{ delay: 2 }} className='use'>
           {use}

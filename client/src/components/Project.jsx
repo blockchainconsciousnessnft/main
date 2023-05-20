@@ -10,7 +10,13 @@ import { GiCursedStar } from "react-icons/gi";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import NameOnHover from "../shared/NameOnHover";
-import heroImage from "../assets/heroImage.png";
+import purpose from "../assets/purpose.png";
+import magazine from "../assets/magazine.png";
+import clarity from "../assets/clarity.png";
+import encyclopedia from '../assets/encyclopedia.png'
+import ubuntu from "../assets/ubuntu.png";
+import agora from "../assets/agora.png";
+
 
 const Main = styled.div`
   display: flex;
@@ -269,7 +275,7 @@ function Project() {
               transition={{ duration: 0.8 }}
               className="image"
             >
-              <img loading="lazy" src={heroImage} alt="" />
+              <img loading="lazy" src={purpose} alt="" />
             </motion.div>
           </Link>
           <Text
@@ -302,7 +308,7 @@ function Project() {
               transition={{ duration: 0.8 }}
               className="image"
             >
-              <img loading="lazy" src={heroImage} alt="" />
+              <img loading="lazy" src={ubuntu} alt="" />
             </motion.div>
           </Link>
           <Text
@@ -389,7 +395,7 @@ function Project() {
               transition={{ duration: 0.8 }}
               className="image"
             >
-              <img loading="lazy" src={heroImage} alt="" />
+              <img loading="lazy" src={magazine} alt="" />
             </motion.div>
           </Link>
           <Text
@@ -422,7 +428,7 @@ function Project() {
               transition={{ duration: 0.8 }}
               className="image"
             >
-              <img loading="lazy" src={heroImage} alt="" />
+              <img loading="lazy" src={clarity} alt="" />
             </motion.div>
           </Link>
           <Text
@@ -455,7 +461,7 @@ function Project() {
               transition={{ duration: 0.8 }}
               className="image"
             >
-              <img loading="lazy" src={heroImage} alt="" />
+              <img loading="lazy" src={encyclopedia} alt="" />
             </motion.div>
           </Link>
           <Text
@@ -484,7 +490,7 @@ function Project() {
               transition={{ duration: 0.8 }}
               className="image"
             >
-              <img loading="lazy" src={heroImage} alt="" />
+              <img loading="lazy" src={agora} alt="" />
             </motion.div>
           </Link>
           <Text
