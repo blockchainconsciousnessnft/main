@@ -1,31 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Raleway:ital,wght@0,200;1,500&display=swap');
 
 @font-face {
-  font-family: 'Moderat';
-  src: url(./fonts/Moderat-Regular.ttf) format(truetype);
-  font-weight: normal;
+    font-family: 'Archivo', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-weight: normal;
 }
-body{
-    font-family: 'Moderat';
-    
-   
-    
+
+body {
+    font-family: 'Archivo', sans-serif;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
     width: 7px;
     background-color: #f05454;
     border-radius: 10px;
 }
 
-::-webkit-scrollbar:hover{
+::-webkit-scrollbar:hover {
     transform: scaleX(1);
 }
