@@ -6,10 +6,10 @@ import Spritual from './Spritual';
 import Radio from './Radio';
 import Encyclopedia from './Encyclopedia';
 import Clarity from './Clarity';
-import magazineImage1 from '../../assets/magazine.png';
-import magazineImage2 from '../../assets/magazine.png'
-import spritualImage1 from "../../assets/ubuntu.png";
-import spritualImage2 from "../../assets/ubuntu.png";
+import magazineImage1 from '../../assets/magazineImage1.png';
+import magazineImage2 from '../../assets/magazineImage2.png'
+import spritualImage1 from "../../assets/spritualImage1.png";
+import spritualImage2 from "../../assets/spritualImage2.png";
 import radioImage1 from '../../assets/radio.png';
 import radioImage2 from '../../assets/radio.png';
 import encyclopediaImage1 from '../../assets/encyclopedia.png'
@@ -17,7 +17,9 @@ import encyclopediaImage2 from '../../assets/encyclopedia.png'
 import clarityImage1 from "../../assets/clarity.png";
 import clarityImage2 from "../../assets/clarity.png";
 import mainPostImage from "../../assets/mainPostImage.png";
+import consiousness from '../../assets/consiousness.gif'
 import { Button, Modal, Form, Upload } from 'antd';
+import NewContentForm from './NewContentForm';
 
 const StyledDashboardroute = styled.div`
   /* width: 66vw; */
@@ -26,7 +28,34 @@ const StyledDashboardroute = styled.div`
   padding: 20px;
 `;
 
-const Main = styled.div`
+const DashboardInfo = styled.div`
+  width: 61vw;
+  height: 90.5vh;
+  padding: 30px;
+  align-items: center;
+`;
+
+const DashboardInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+`;
+
+const ImageContainer = styled.div`
+    height: 600px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(${consiousness});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+`;
+
+const DashboardContent = styled.div`
   width: 61vw;
   height: 90.5vh;
   overflow: auto;
@@ -109,6 +138,28 @@ const StyledButton2 = styled(Button)`
 const ComboBtn = styled.div`
     width: 37%;
 `
+
+const StyledModal = styled(Modal)`
+  .ant-modal-title{
+    color:#876445;
+    font-size: 24px;
+  }
+
+  .ant-modal-footer .ant-btn-default{
+    display: none;
+  }
+  .ant-modal-footer .ant-btn-primary{
+    width: 475px;
+    margin: 0 !important;
+    background-color: #876445;
+    font-size: 20px;
+    height: 50px;
+
+    span{
+      color: #fff;
+    }
+  }
+`;
 
 const routesData = [
     {
@@ -225,73 +276,64 @@ const routeContent = (route) => {
     renderRouteComponent = <Encyclopedia postData={routesData[3].post} />;
   } else if (route === "Clarity") {
     renderRouteComponent = <Clarity postData={routesData[4].post} />;
+  } else{
+    renderRouteComponent = <div></div>;
   }
 
   return renderRouteComponent;
 };
 
-const DashboardRoute = () => {
-    let typeOfUser = 'nft';
+const DashboardRoute = ({typeOfUser}) => {
     const params = useParams();
     const [newcontentModal , setNewContentModal] = useState(false);
     return (
-      <Main>
-        <ImageDiv>
-          <Text>Spirituality. Community. Enterprise.</Text>
-        </ImageDiv>
-
-        <ProposeContentDiv>
-          {typeOfUser === "regular" ? (
-            <StyledButton1>+ Propose Content</StyledButton1>
-          ) : (
-            <ComboBtn
-              style={{ display: "flex", justifyContent: "space-between" }}
-            >
-              <StyledButton1>+ Create Topic</StyledButton1>
-              <StyledButton2 onClick={() => setNewContentModal(true)}>
-                + Propose Content
-              </StyledButton2>
-            </ComboBtn>
-          )}
-        </ProposeContentDiv>
-        <StyledDashboardroute>
-          {routeContent(params.route)}
-        </StyledDashboardroute>
+      <>
         {
-          <Modal 
-            title="Create New Proposal" 
-            open={newcontentModal} 
-            centered
-            okText="Submit"
-            cancelText="Cancel"
-            onOk={() => setNewContentModal(false)}
-            onCancel={() => setNewContentModal(false)}
-          >
-            {/* <Form>
-              <Form.Item label="Dragger">
-                <Form.Item
-                  name="dragger"
-                  valuePropName="fileList"
-                  getValueFromEvent={normFile}
-                  noStyle
+          params.route
+          ? <DashboardContent>
+            <ImageDiv>
+              <Text>Spirituality. Community. Enterprise.</Text>
+            </ImageDiv>
+            <ProposeContentDiv>
+              {typeOfUser === "regular" ? (
+                <StyledButton1 onClick={() => setNewContentModal(true)}>+ Propose Content</StyledButton1>
+              ) : (
+                <ComboBtn
+                  style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <Upload.Dragger name="files" action="/upload.do">
-                    <p className="ant-upload-drag-icon">
-                      <InboxOutlined />
-                    </p>
-                    <p className="ant-upload-text">
-                      Click or drag file to this area to upload
-                    </p>
-                    <p className="ant-upload-hint">
-                      Support for a single or bulk upload.
-                    </p>
-                  </Upload.Dragger>
-                </Form.Item>
-              </Form.Item>
-            </Form> */}
-          </Modal>
+                  <StyledButton1>+ Create Topic</StyledButton1>
+                  <StyledButton2 onClick={() => setNewContentModal(true)}>
+                    + Propose Content
+                  </StyledButton2>
+                </ComboBtn>
+              )}
+            </ProposeContentDiv>
+            <StyledDashboardroute>
+              {routeContent(params.route)}
+            </StyledDashboardroute>
+            {
+              <StyledModal 
+                title="Create New Proposal" 
+                open={newcontentModal} 
+                centered
+                okText="Submit"
+                cancelText="Cancel"
+                onOk={() => setNewContentModal(false)}
+                onCancel={() => setNewContentModal(false)}
+              >
+                <NewContentForm/>
+              </StyledModal>
+            }
+          </DashboardContent>
+          : <DashboardInfo>
+              <ImageContainer><Text style={{ fontSize: '60px' }}>Spirituality. Community. Enterprise.</Text></ImageContainer>
+              <DashboardInfoContainer>
+                <Text style={{ fontSize: '45px', color: '#2e1a08' }}>Welcome to the Dashboard </Text>
+                <Text style={{ color: '#876445'}}>Use Side menu for navigation and interact with variety of content</Text>
+              </DashboardInfoContainer>
+          </DashboardInfo>
         }
-      </Main>
+      </>
     );
 }
 

@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import project1 from "../assets/project1.png";
-import project2 from "../assets/project2.png";
-import project3 from "../assets/project3.png";
-import project4 from "../assets/project4.png";
-import project6 from "../assets/project6.png";
+
 import { BsGithub } from "react-icons/bs";
 import { GiCursedStar } from "react-icons/gi";
 import { IoArrowRedoOutline } from "react-icons/io5";
