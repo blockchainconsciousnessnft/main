@@ -1,11 +1,10 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import styled from "styled-components";
 import { Image } from "antd";
 import bell from "../assets/bell.png";
 import Filter from "../assets/Filter.png";
-import { ConnectWallet } from "@thirdweb-dev/react";
-import { Outlet } from "react-router-dom";
-import { DashOutlined } from "@ant-design/icons";
+import { useAddress, ConnectWallet } from "@thirdweb-dev/react";
+import { useNavigate } from "react-router-dom";
 import DashboardComponents from "./DashboardComponents/DashboardComponents";
 import DashboardRoute from "./DashboardComponents/DashboardRoute";
 import Extras from "./DashboardComponents/Extras";
@@ -132,6 +131,13 @@ const Navbar = () => {
 
 const Dashboard = () => {
   const [typeOfUser, setTypeOfUser] = useState('regular');
+  const address = useAddress();
+  const navigate = useNavigate();
+
+  
+  useEffect(() => {
+    if(!address) navigate('/home');
+   }, [address])
   return (
     <DashboardDiv>
       <Navbar />

@@ -15,11 +15,7 @@ import { ThirdwebProvider } from "@thirdweb-dev/react";
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 import DashboardComponents from './components/DashboardComponents/DashboardComponents'
 import DashboardRoute from './components/DashboardComponents/DashboardRoute'
-import Magazine from './components/DashboardComponents/Magazine';
-import Spritual from './components/DashboardComponents/Spritual';
-import Radio from './components/DashboardComponents/Radio';
-import Encyclopedia from './components/DashboardComponents/Encyclopedia';
-import Clarity from './components/DashboardComponents/Clarity';
+import HomePage from './pages/HomePage';
 
 export const dashboardRoutes = [
   {
@@ -80,6 +76,7 @@ function App() {
                 <Router>
                   <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/home" element={<HomePage />} />
                     <Route path="/dashboard" element={<Dashboard />}>
                       <Route index element={<DashboardComponents />} />
                       <Route path=':route' element={<DashboardRoute/>} />
