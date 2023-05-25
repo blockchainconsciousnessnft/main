@@ -1,17 +1,15 @@
 import React , {useEffect , useState} from 'react'
-import About from '../components/About'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import Hero from '../components/Hero'
-import Project from '../components/Project'
-import Skills from '../components/Skills'
+
 import Loader from '../components/Loader'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
   const [loading , setLoading] = useState(true)
+  const navigate = useNavigate();
   useEffect(()=>{
     setTimeout(() => {
       setLoading(false)
+      navigate('/home')
     } , 5700)
   } , [loading])
   
@@ -19,18 +17,7 @@ function Home() {
 
   return (
     <>
-      {loading ? (
-        <Loader />
-      ) : (
-        <div>
-          <Header />
-          <Hero />
-          <Project />
-          <About />
-          <Skills />
-          <Footer />
-        </div>
-      )}
+      {loading && <Loader /> }
     </>
   );}
 

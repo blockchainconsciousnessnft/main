@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import TimeComponent from "./TimeComponent";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { Button, Image } from "antd";
 import logo from "../assets/logo.png";
+import { useAddress, ConnectWallet } from "@thirdweb-dev/react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { ArrowRightOutlined } from "@ant-design/icons";
 
 const Main = styled.header`
   display: flex;
@@ -66,10 +69,42 @@ const Main = styled.header`
   }
 
   .walletBtn {
-    color: #000;
-    font-size: 15px;
+    background: linear-gradient(
+      0deg,
+      rgba(6, 82, 15, 1) 0%,
+      rgba(45, 253, 79, 1) 100%
+    );
+
+    width: 220px;
+    height: 60px;
+    border-radius: 20px;
+    margin-top: -12px;
+    margin-right: 30px;
+    outline: none;
+    border: none;
     font-weight: bold;
-    text-align: center;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      background-position: right center; /* change the direction of the change here */
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .css-1iyoj2o {
+      padding-left: 8px;
+      width: 150px;
+    }
+
+    .tw-connected-wallet .walletBtn {
+      width: 370px;
+    }
+
+    .tw-connected-wallet__address {
+      color: yellow;
+    }
   }
 `;
 
@@ -89,6 +124,9 @@ const StyledButton = styled(Button)`
   outline: none;
   border: none;
   cursor: pointer;
+  font-weight: bold;
+  color: #fff;
+  font-size: 20px;
 
   &:hover {
     background-position: right center; /* change the direction of the change here */
@@ -137,6 +175,20 @@ function Header() {
       easing: [0.25, 0.0, 0.35, 1.0],
     });
   };
+
+  const address = useAddress();
+  const navigate = useNavigate();
+  const params = useParams();
+
+  useEffect(() => {
+    if (!address) return;
+    else {
+      navigate("/dashboard");
+    }
+  }, [address]);
+
+  const [dashboardBtnClicked, setDashboardBtnClicked] = useState(false);
+
   return (
     <Main data-scroll-section>
       <div>
@@ -164,7 +216,7 @@ function Header() {
             animate="animate"
             onClick={() => handleScroll("#project")}
           >
-            Projects
+            Goal
           </motion.li>
           <motion.li
             whileHover={{
@@ -177,7 +229,7 @@ function Header() {
             animate="animate"
             onClick={() => handleScroll("#about")}
           >
-            About
+            Be a Part
           </motion.li>
           <motion.li
             whileHover={{
@@ -209,7 +261,7 @@ function Header() {
         </motion.ul>
       </div>
 
-      <StyledButton>
+      <StyledButton onClick={() => setDashboardBtnClicked(true)} style={{ display: dashboardBtnClicked && 'none'}}>
         <motion.p
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -217,11 +269,17 @@ function Header() {
             duration: 1.4,
             ease: [0.17, 0.67, 0.83, 0.67],
           }}
-          className="walletBtn"
         >
-          Connect Wallet
+          Dashboard <ArrowRightOutlined />
         </motion.p>
       </StyledButton>
+      {dashboardBtnClicked && (
+        <ConnectWallet
+          theme="dark"
+          btnTitle="Connect Wallet"
+          className="walletBtn"
+        />
+      )}
     </Main>
   );
 }
