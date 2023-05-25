@@ -164,7 +164,7 @@ function Header() {
             animate="animate"
             onClick={() => handleScroll("#project")}
           >
-            Projects
+            Goal
           </motion.li>
           <motion.li
             whileHover={{
@@ -177,7 +177,7 @@ function Header() {
             animate="animate"
             onClick={() => handleScroll("#about")}
           >
-            About
+            Be a Part
           </motion.li>
           <motion.li
             whileHover={{

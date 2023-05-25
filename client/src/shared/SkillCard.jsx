@@ -5,7 +5,7 @@ import { Image } from 'antd';
 
 const Container = styled.div`
   width: 16vw;
-  height: 50vh;
+  height: 60vh;
   /* display: flex; */
   margin: 0 1rem;
   justify-content: center;
@@ -80,12 +80,12 @@ const Text = styled(motion.div)`
     width: 100%;
   }
   .use {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     width: 100%;
     font-family: 'Nunito Sans', sans-serif;
     overflow: hidden;
     transition: all 0.8s ease-in-out;
-   
+    line-height: 26px;;
   }
 `
 

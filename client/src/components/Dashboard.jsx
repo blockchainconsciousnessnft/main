@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import styled from "styled-components";
 import { Image } from "antd";
 import bell from "../assets/bell.png";
@@ -131,13 +131,14 @@ const Navbar = () => {
 };
 
 const Dashboard = () => {
+  const [typeOfUser, setTypeOfUser] = useState('regular');
   return (
     <DashboardDiv>
       <Navbar />
       <div style={{ display: 'flex', height: '90.5vh'}}>
         <DashboardComponents />
-        <DashboardRoute />
-        <Extras />
+        <DashboardRoute typeOfUser={typeOfUser}/>
+        <Extras typeOfUser={typeOfUser} setTypeOfUser={setTypeOfUser}/>
       </div>
       {/* <Outlet /> */}
     </DashboardDiv>

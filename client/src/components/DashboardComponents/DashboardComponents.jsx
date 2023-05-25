@@ -13,7 +13,7 @@ const StyledListContainer = styled.ul``;
 const StyledList = styled.li``;
 
 const RouteName = styled.div`
-  width: 100%;
+  width: 200px;
   height: 40px;
   font-family: "Archivo";
   font-style: normal;
@@ -27,6 +27,11 @@ const RouteName = styled.div`
   border-radius: 8px;
   color: #af9883;
   cursor: pointer;
+
+  &:hover{
+    color: #fff;
+    background-color: #2e1a08;
+  }
 `;
 
 const DashboardComponents = () => {

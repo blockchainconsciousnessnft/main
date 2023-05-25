@@ -1,9 +1,9 @@
 import React , {useEffect , useState} from 'react'
-import About from '../components/About'
+import BeaPart from '../components/BeaPart'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
-import Project from '../components/Project'
+import Goal from '../components/Goal'
 import Skills from '../components/Skills'
 import Loader from '../components/Loader'
 
@@ -25,8 +25,8 @@ function Home() {
         <div>
           <Header />
           <Hero />
-          <Project />
-          <About />
+          <Goal />
+          <BeaPart />
           <Skills />
           <Footer />
         </div>
