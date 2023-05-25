@@ -179,8 +179,6 @@ function Header() {
   const address = useAddress();
   const navigate = useNavigate();
   const params = useParams();
-  console.log("param", params);
-  console.log("address ", address);
 
   useEffect(() => {
     if (!address) return;
@@ -280,7 +278,6 @@ function Header() {
           theme="dark"
           btnTitle="Connect Wallet"
           className="walletBtn"
-          onClick={() => console.log("hello")}
         />
       )}
     </Main>

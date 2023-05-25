@@ -42,11 +42,7 @@ const DashboardComponents = () => {
           return (
             <StyledList key={route.id}>
               <Link to={`/dashboard/${route.routeName}`}>
-                <RouteName
-                  onClick={() => console.log("route name", route.routeName)}
-                >
-                  {route.routeName}
-                </RouteName>
+                <RouteName>{route.routeName}</RouteName>
               </Link>
             </StyledList>
           );
