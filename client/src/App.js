@@ -54,7 +54,6 @@ function App() {
   const { scrollYProgress } = useScroll()
   const [theme, setTheme] = useState('original')
   return (
-    <ThirdwebProvider activeChain="ethereum">
       <LocomotiveScrollProvider
         options={{
           smooth: true,
@@ -91,7 +90,6 @@ function App() {
           </>
         </main>
       </LocomotiveScrollProvider>
-    </ThirdwebProvider>
   );
 }
   const Line = styled.div`

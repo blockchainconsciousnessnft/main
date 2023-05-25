@@ -18,6 +18,7 @@ import clarityImage1 from "../../assets/clarity.png";
 import clarityImage2 from "../../assets/clarity.png";
 import mainPostImage from "../../assets/mainPostImage.png";
 import { Button, Modal, Form, Upload } from 'antd';
+import { useErrandContext } from '../../constant/context';
 
 const StyledDashboardroute = styled.div`
   /* width: 66vw; */
@@ -231,7 +232,8 @@ const routeContent = (route) => {
 };
 
 const DashboardRoute = () => {
-    let typeOfUser = 'nft';
+  const { proposeContent } = useErrandContext()
+    let typeOfUser = 'regular';
     const params = useParams();
     const [newcontentModal , setNewContentModal] = useState(false);
     return (
@@ -242,7 +244,12 @@ const DashboardRoute = () => {
 
         <ProposeContentDiv>
           {typeOfUser === "regular" ? (
-            <StyledButton1>+ Propose Content</StyledButton1>
+            <StyledButton1 onClick={() => proposeContent(
+              "hhggjjgj",
+              "fhhfhfhf",
+              "hfhfhfhf",
+              "hfhfhfh"
+            )}>+ Propose Content</StyledButton1>
           ) : (
             <ComboBtn
               style={{ display: "flex", justifyContent: "space-between" }}

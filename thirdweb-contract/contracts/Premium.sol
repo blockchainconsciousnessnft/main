@@ -16,11 +16,9 @@ contract Premium is ERC721Enumerable, Ownable {
     mapping(address => bool) private _whitelistedAddresses;
 
     constructor(
-        string memory baseURI,
-        uint8 maxWhitelistedAddresses
     ) ERC721("Blockchain Consciousness", "BC") {
-        _baseTokenURI = baseURI;
-        _maxWhitelistedAddresses = maxWhitelistedAddresses;
+        _baseTokenURI = "https://ipfs.thirdwebcdn.com/ipfs/bafybeiek4jfmztdgfhuprtndd6zkkzgbjlsqgigoggo7hgxskusy2w3xtq";
+        _maxWhitelistedAddresses = 5;
     }
 
     function _baseURI() internal view virtual override returns (string memory) {
@@ -43,7 +41,7 @@ contract Premium is ERC721Enumerable, Ownable {
         _whitelistedAddresses[msg.sender] = true;
     }
 
-    function isAddressWhitelisted(address addr) public view returns (bool) {
+    function isAddressWhitelisted(address addr) external view returns (bool) {
         return _whitelistedAddresses[addr];
     }
 

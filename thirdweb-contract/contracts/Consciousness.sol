@@ -1,21 +1,19 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-interface IPremium {
-    function whitelistedAddresses(address) external view returns (bool);
-}
+import "./interfaces/IPremium.sol";
 
-contract Consciousness {
+contract Consciousness  {
     address payable owner;
     uint256 constant ownerPercentage = 80;
     uint256 constant creatorPercentage = 20;
     uint256 contentId;
     uint256 constant tokenAmount = 0.001 ether;
-    address public premiumContract;
+    IPremium public _premiumContract;
 
-    constructor(address _premium) {
+    constructor(address _gameContract) {
         owner = payable(msg.sender);
-        premiumContract = _premium;
+        _premiumContract = IPremium(_gameContract);
     }
 
     /// @dev Holds every single content details
@@ -30,8 +28,8 @@ contract Consciousness {
     }
 
     mapping(address => mapping(uint256 => bool)) contentAccepted;
-    mapping(address => mapping(uint256 => Content)) contentAproval;
-    mapping(address => Content) contentMp;
+    mapping(address => mapping(uint256 => Content)) contentApproval;
+    mapping(address => Content) contentMap;
     Content[] contents;
 
     /**
@@ -47,7 +45,7 @@ contract Consciousness {
         string memory _contentDesc,
         string memory _category
     ) external {
-        Content storage proposed = contentMp[msg.sender];
+        Content storage proposed = contentMap[msg.sender];
         proposed.contentOwner = payable(msg.sender);
         proposed.id = contentId;
         proposed.imageString = _image;
@@ -58,20 +56,22 @@ contract Consciousness {
         contents.push(proposed);
     }
 
+    modifier onlyWhitelistedAddress {
+        require(_premiumContract.whitelistedAddresses(msg.sender), "Sender is not whitelisted");
+        _;
+    }
+
     /**
      * @dev Vote for a specific content proposed by its owner.
      * @param _contentOwner Owner of the content.
      * @param _contentId ID of the content.
      */
-    function voteContent(address _contentOwner, uint256 _contentId) external {
-        IPremium premium = IPremium(premiumContract);
-        require(
-            premium.whitelistedAddresses(msg.sender),
-            "Sender is not whitelisted"
-        );
-        Content storage content = contentAproval[_contentOwner][_contentId];
-        content.accepted = true;
-    }
+function voteContent(address _contentOwner, uint256 _contentId) external {
+    Content storage content = contentApproval[_contentOwner][_contentId];
+    
+    content.accepted = true;
+    contentAccepted[_contentOwner][_contentId] = true;
+}
 
     function checkIfApproved(
         address _contentOwner,
@@ -81,20 +81,19 @@ contract Consciousness {
     }
 
     function getApprovedContent() external view returns (Content[] memory) {
-        Content[] memory approvedContent;
         uint256 approvedCount = 0;
 
         for (uint256 i = 0; i < contents.length; i++) {
-            if (contents[i].accepted) {
+            if (contents[i].accepted == true) {
                 approvedCount++;
             }
         }
 
-        approvedContent = new Content[](approvedCount);
+        Content[] memory approvedContent = new Content[](approvedCount);
         approvedCount = 0;
 
         for (uint256 i = 0; i < contents.length; i++) {
-            if (contents[i].accepted) {
+            if (contents[i].accepted == true) {
                 approvedContent[approvedCount] = contents[i];
                 approvedCount++;
             }
