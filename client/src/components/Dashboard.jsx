@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import DashboardComponents from "./DashboardComponents/DashboardComponents";
 import DashboardRoute from "./DashboardComponents/DashboardRoute";
 import Extras from "./DashboardComponents/Extras";
+import { useConsciousContext } from "../context";
 
 const DashboardDiv = styled.div`
   background-color: #fff;
@@ -130,7 +131,8 @@ const Navbar = () => {
 };
 
 const Dashboard = () => {
-  const [typeOfUser, setTypeOfUser] = useState('regular');
+  //const [typeOfUser, setTypeOfUser] = useState('regular');
+  const { typeOfUser } = useConsciousContext()
   const address = useAddress();
   const navigate = useNavigate();
 
@@ -144,7 +146,7 @@ const Dashboard = () => {
       <div style={{ display: 'flex', height: '90.5vh'}}>
         <DashboardComponents />
         <DashboardRoute typeOfUser={typeOfUser}/>
-        <Extras typeOfUser={typeOfUser} setTypeOfUser={setTypeOfUser}/>
+        <Extras typeOfUser={typeOfUser}/>
       </div>
       {/* <Outlet /> */}
     </DashboardDiv>

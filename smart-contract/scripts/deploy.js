@@ -7,15 +7,20 @@
 const hre = require("hardhat");
 
 async function main() {
+  //Premium contract deploy script
+  const Premium = await hre.ethers.getContractFactory("Premium");
+  const premium = await Premium.deploy();
+
+  await premium.deployed();
+
+  console.log(`Premium deployed to ${premium.address}`);
 
   const Conciousness = await hre.ethers.getContractFactory("Consciousness");
-  const conciousness = await Conciousness.deploy("0x61B52B719BE103efF87993a6c01876451dA103C0");
+  const conciousness = await Conciousness.deploy(premium.address);
 
   await conciousness.deployed();
 
-  console.log(
-    `Conciousness deployed to ${conciousness.address}`
-  );
+  console.log(`Conciousness deployed to ${conciousness.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

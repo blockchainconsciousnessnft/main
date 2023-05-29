@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { ConciousProvider } from "./constant/context";
+import { ConciousProvider } from './context'
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

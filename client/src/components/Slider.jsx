@@ -99,6 +99,7 @@ const Text = styled.div`
 `;
 
 const renderText = (slideNo) => {
+  // eslint-disable-next-line default-case
   switch (slideNo) {
     case 1:
       return (

@@ -26,6 +26,7 @@ contract Premium is ERC721Enumerable, Ownable {
     }
 
     function addAddressToWhitelist() public {
+        require(msg.sender != address(0), "address cannot be of 0");
         require(
             !_whitelistedAddresses[msg.sender],
             "Sender has already been whitelisted"

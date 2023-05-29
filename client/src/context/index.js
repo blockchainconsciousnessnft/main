@@ -1,13 +1,15 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
 import { ethers } from "ethers";
 import axios from "axios";
-import connectWithContract from "..";
+import  { connectWithPremiumContract, connectWithContract } from "../constant";
+import { useAddress } from "@thirdweb-dev/react";
 
 const ConsciousContext = createContext();
 
 export const ConciousProvider = ({ children }) => {
   const [allContent, setAllContent] = useState();
-  const [isListed, setIsListed] = useState("regular")
+  const [typeOfUser, setTypeOfUser] = useState("regular")
+  const address = useAddress()
 
 
   /**
@@ -23,7 +25,9 @@ export const ConciousProvider = ({ children }) => {
         category
       );
       console.log(content);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   //check if content is approved
@@ -53,27 +57,32 @@ export const ConciousProvider = ({ children }) => {
    */
   const addToWhiteList = async () => {
     try {
-      const contract = await connectWithContract();
-      await contract.addAddressToWhitelist();
-      setIsListed("nft")
+      const contract = await connectWithPremiumContract();
+    const whitelist =  await contract.addAddressToWhitelist();
+    console.log(whitelist)
+      setTypeOfUser("premium")
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 
   const checkIfWhitelisted = async () => {
     try {
-      const contract = await connectWithContract();
-      const result = await contract.isAddressWhitelisted();
+      const contract = await connectWithPremiumContract();
+      const result = await contract.isAddressWhitelisted(address);
       return result;
     } catch (error) {
       console.log(error);
     }
   };
 
+  useEffect(() => {
+    checkIfWhitelisted()
+  }, [address])
+
   const setTokenUri = async (tokenURI) => {
     try {
-      const contract = await connectWithContract();
+      const contract = await connectWithPremiumContract();
       await contract.setBaseURI(tokenURI);
     } catch (error) {
       console.log(error)
@@ -88,7 +97,8 @@ export const ConciousProvider = ({ children }) => {
         voteContentApproval,
         addToWhiteList,
         checkIfWhitelisted,
-        setTokenUri
+        setTokenUri,
+        typeOfUser
       }}
     >
       {children}
@@ -96,4 +106,4 @@ export const ConciousProvider = ({ children }) => {
   );
 };
 
-export const useErrandContext = () => useContext(ConsciousContext);
+export const useConsciousContext = () => useContext(ConsciousContext);
