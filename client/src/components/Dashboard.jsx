@@ -136,7 +136,6 @@ const Dashboard = () => {
   const address = useAddress();
   const navigate = useNavigate();
 
-  
   useEffect(() => {
     if(!address) navigate('/home');
    }, [address])

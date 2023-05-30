@@ -2,8 +2,8 @@ import { ethers } from "ethers";
 import conciousabi from './Consciousness.json'
 import premium from './Premium.json'
 
- export const conciousness = "0x5AcC5C86091322CFE00Fa667Ffc18f67f88791ec"
- export const Premium = "0x61B52B719BE103efF87993a6c01876451dA103C0"
+ export const conciousness = "0x96Bc006F5459DB4700F3f0e6aDE05E10aE93e7a0"
+ export const Premium = "0x31c84656D0A3F885CF7065A643BF19699D220C41"
 
  const conciousABI = conciousabi.abi
  const premiumABI  = premium.abi

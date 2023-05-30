@@ -300,6 +300,10 @@ const DashboardRoute = ({ typeOfUser }) => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState();
   const [image, setImage] = useState("");
+  const [twitter, setTwitter] = useState()
+  const [facebook, setFacebook] = useState("")
+  const [linkedin, setLinkedin] = useState("")
+  const [instagram, setInstagram] = useState("")
   const [links, setLinks] = useState({
     twitter: "",
     facebook: "",
@@ -308,10 +312,19 @@ const DashboardRoute = ({ typeOfUser }) => {
   });
   const [newcontentModal, setNewContentModal] = useState(false);
 
-  const onSubmitButton = () => {
-    proposeContent(title, description, category, "fhhfhfhjfjfj");
+  const onSubmitButton = async() => {
+  await  proposeContent(
+      image,
+      title,
+      description,
+      category,
+      facebook,
+      instagram,
+      linkedin,
+      twitter
+    )
     setNewContentModal(false);
-  }
+  };
   return (
     <>
       {params.route ? (
@@ -345,9 +358,9 @@ const DashboardRoute = ({ typeOfUser }) => {
               centered
               okText="Submit"
               cancelText="Cancel"
-              onOk={() => setNewContentModal(false)}
+              onOk={onSubmitButton}
               onCancel={() => setNewContentModal(false)}
-              okButtonProps={onSubmitButton}
+              //okButtonProps={() => proposeContent(title, description, category, "fhhfhfhjfjfj")}
             >
               <NewContentForm
                 title={title}
@@ -359,7 +372,14 @@ const DashboardRoute = ({ typeOfUser }) => {
                 setTitle={setTitle}
                 setCategory={setCategory}
                 setImage={setImage}
-                setLinks={setLinks}
+                setFacebook={setFacebook}
+                setInstagram={setInstagram}
+                setLinkedin={setLinkedin}
+                setTwitter={setTwitter}
+                facebook={facebook}
+                instagram={instagram}
+                linkedin={linkedin}
+                twitter={twitter}
               />
             </StyledModal>
           }

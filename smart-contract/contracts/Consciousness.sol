@@ -25,6 +25,10 @@ contract Consciousness {
         string title;
         string contentDescription;
         string category;
+        string facebook;
+        string instagram;
+        string telegram;
+        string twitter;
     }
 
     mapping(uint256 => bool) contentAccepted;
@@ -43,7 +47,11 @@ contract Consciousness {
         string memory _image,
         string memory _title,
         string memory _contentDesc,
-        string memory _category
+        string memory _category,
+         string memory _facebook,
+        string memory _instagram,
+        string memory _telegram,
+        string memory _twitter
     ) external {
         Content storage proposed = contentMap[msg.sender];
         proposed.contentOwner = payable(msg.sender);
@@ -52,6 +60,10 @@ contract Consciousness {
         proposed.title = _title;
         proposed.contentDescription = _contentDesc;
         proposed.category = _category;
+        proposed.instagram = _instagram;
+        proposed.telegram = _telegram;
+        proposed.facebook = _facebook;
+        proposed.twitter = _twitter;
         contentId++;
         contents.push(proposed);
     }

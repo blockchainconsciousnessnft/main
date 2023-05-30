@@ -1,8 +1,9 @@
-import { Form, Input, Upload, Button } from "antd";
+import { Form, Input, Upload, Button, Select } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useConsciousContext } from "../../context";
+import { sendFileToIPFS } from "../../pinata";
 
 const { TextArea } = Input;
 
@@ -46,9 +47,17 @@ function NewContentForm({
   setImage,
   title,
   setTitle,
+  facebook,
+  instagram,
+  linkedin,
+  twitter,
+  setFacebook,
+  setInstagram,
+  setLinkedin,
+  setTwitter
 }) {
   const [form] = Form.useForm();
-
+  console.log(category);
   const [templateFormData, setTemplateFormData] = useState();
 
   const [metaData, setMetaData] = useState();
@@ -61,13 +70,23 @@ function NewContentForm({
     setMetaData(data);
   };
 
+  const ipfsgateway = "gateway.pinata.cloud";
+
+  const uploadImage = async (e) => {
+    const file = e.target.files[0];
+    const getCid = await sendFileToIPFS(file);
+    const ipfsPath = "https://" + ipfsgateway + "/ipfs/" + getCid;
+    setImage(ipfsPath);
+    console.log(ipfsPath);
+  };
+
   const normFile = (e) => {
     if (Array.isArray(e)) {
       return e;
     }
     return e?.fileList;
   };
-
+  const { Option } = Select;
   return (
     <div>
       <Form
@@ -101,13 +120,28 @@ function NewContentForm({
             onChange={(e) => setTitle(e.target.value)}
           />
         </StyledLabel>
-        <StyledLabel name="category" label="Category">
-          <Input
-            placeholder="Enter Category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
-        </StyledLabel>
+        <Form.Item
+          name="select"
+          label="Select"
+          hasFeedback
+          rules={[{ required: true, message: "Please select your category!" }]}
+        >
+          <label>
+            <span>Category</span>
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              class="w-full font-bold font-OpenSans-Bold bg-[#f0f0f0] rounded-[8px] h-16 text-[#000000]"
+            >
+              <option>Category</option>
+              <option>Magazine</option>
+              <option>Spiritual</option>
+              <option>Radio</option>
+              <option>Encyclopedia</option>
+              <option>Clarity</option>
+            </select>
+          </label>
+        </Form.Item>
         <StyledLabel name="description" label="Description">
           <TextArea
             rows={4}
@@ -123,9 +157,7 @@ function NewContentForm({
           getValueFromEvent={normFile}
           style={{ fontWeight: "bold", color: "#000" }}
         >
-          <Upload name="logo" action="/upload.do" listType="picture">
-            <StyledButton icon={<UploadOutlined />}>Add a picture</StyledButton>
-          </Upload>
+          <input type="file" onChange={uploadImage} />
         </Form.Item>
         <Form.Item
           name="socialLinks"
@@ -135,10 +167,18 @@ function NewContentForm({
           {/* first */}
           <SocialDiv>
             <StyledLabel name="twitter" label="Twitter">
-              <StyledInput placeholder="@twitter" />
+              <StyledInput
+                placeholder="@twitter"
+                value={twitter}
+                onChange={(e) => setTwitter(e.target.value)}
+              />
             </StyledLabel>
             <StyledLabel name="linkedIn" label="LinkedIn">
-              <StyledInput placeholder="http://" />
+              <StyledInput
+                placeholder="http://"
+                value={linkedin}
+                onChange={(e) => setLinkedin(e.target.value)}
+              />
             </StyledLabel>
           </SocialDiv>
 
@@ -146,16 +186,16 @@ function NewContentForm({
           <SocialDiv>
             <StyledLabel name="facebook" label="Facebook">
               <StyledInput
-                placeholder="http://"
-                value={links.facebook}
-                onChange={(e) => setLinks(e.target.value)}
+                placeholder="@facebook"
+                value={facebook}
+                onChange={(e) => setFacebook(e.target.value)}
               />
             </StyledLabel>
             <StyledLabel name="instagram" label="Instagram">
               <StyledInput
                 placeholder="@instagram"
-                value={links.instagram}
-                onChange={(e) => setLinks(e.target.value)}
+                value={instagram}
+                onChange={(e) => setInstagram(e.target.value)}
               />
             </StyledLabel>
           </SocialDiv>
