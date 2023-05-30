@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "styled-components";
 import { Button } from "antd";
 import magazine from "../../assets/magazine.png";
 import mint from "../../assets/mint.png";
+import { useConsciousContext } from "../../context";
+import { useAddress } from "@thirdweb-dev/react";
 
 const ExtrasDiv = styled.div`
   width: 25vw;
@@ -151,7 +153,8 @@ const proposals = [
   },
 ];
 
-const Extras = ({ typeOfUser, setTypeOfUser }) => {
+const Extras = ({ typeOfUser }) => {
+  const { addToWhiteList } = useConsciousContext()
   return (
     <ExtrasDiv>
       {typeOfUser === "premium" ? (
@@ -172,7 +175,7 @@ const Extras = ({ typeOfUser, setTypeOfUser }) => {
         <Card1>
           <Card1Container>
             <Text1>Do you want to Mint your enlightenment?</Text1>
-            <StyledButton onClick={() => setTypeOfUser('premium')}>Mint Now</StyledButton>
+            <StyledButton onClick={addToWhiteList}>Mint Now</StyledButton>
           </Card1Container>
         </Card1>
       )}
