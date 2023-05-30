@@ -258,6 +258,19 @@ function Header() {
           >
             Contact Me
           </motion.li>
+
+          <motion.li
+            whileHover={{
+              scale: 1.05,
+              letterSpacing: "2px",
+              transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] },
+            }}
+            variants={letter}
+            initial="initial"
+            animate="animate"
+          >
+            <a style={{ color: '#fff'}} target="_blank" href="https://docs.google.com/document/d/1DxoFHP43VJnbF-iXzQg3EF02vby9gV2dby5LPP4hAd8/edit?usp=drivesdk">Download Whitepaper</a>
+          </motion.li>
         </motion.ul>
       </div>
 

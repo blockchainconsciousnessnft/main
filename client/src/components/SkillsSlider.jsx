@@ -46,12 +46,6 @@ function SkillsSlider() {
           use='Enyinnaya Freedom is a freelance creative who specializes in creative writing, poetry, rap music etc. Using the web 3 industry as a sound footing for content autonomy. He specialises in blockchain innovations & community driven initiatives that add value and emphasize cohesion and unison.'
           role='Founder and Ideation Manager'
         />
-        <SkillCard
-          src={theresa}
-          name='Theresa Kennedy'
-          use='Founder of Black History DAO - the first decentralized museum built for the preservation of black history on a trustless blockchain. FIBREE | Real Estate Blockchain'
-          role='Blockchain Space Expert'
-        />
          <SkillCard
           src={joseph}
           name='Joseph Omotade'
